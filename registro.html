@@ -21,6 +21,28 @@
             let ltCategorias = new Object();
             ltCategorias = getCategorias();
 
+            function getEstados() {
+                fetch('https://micasaapptestapi.azurewebsites.net/api/categorias')
+                .then(response => response.json())
+                .then(ltEstados => {
+                    ltEstados.forEach(estado => {
+                        console.log("Estado" + estado.idEstado);
+                    });
+                })
+                .catch(console.log("Error Estados"))
+            }
+
+            function getMunicipios() {
+                fetch('https://micasaapptestapi.azurewebsites.net/api/municipios')
+                .then(response => response.json())
+                .then(ltMunicipios => {
+                    ltMunicipios.forEach(municipio => {
+                        console.log("Municipio: " + municipio.idMunicipio);
+                    });
+                })
+                .catch(console.log("Error Municipios"))
+            }
+
             async function getCategorias(url = 'https://micasaapptestapi.azurewebsites.net/api/categorias', data = {}) {
                 // Opciones por defecto estan marcadas con un *
                 const response = await fetch(url, {
