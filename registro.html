@@ -26,8 +26,19 @@
                 fetch('https://micasaapptestapi.azurewebsites.net/api/estados')
                 .then(response => response.json())
                 .then(ltEstados => {
+                    const selectEstado = document.getElementById('selectEstado');
+
+                    let optionDefault = document.createElement('option');
+                    optionDefault.value = 0;
+                    optionDefault.innerHTML = "Seleccione un Estado";
+                    selectEstado.appendChild(optionDefault);
+
                     ltEstados.forEach(estado => {
-                        console.log("Estado" + estado.idEstado);
+                        console.log("Estado" + estado.NombreEstado);
+                        let option = document.createElement('option');
+                        option.value = estado.IdEstado;
+                        option.innerHTML = estado.NombreEstado;
+                        selectEstado.appendChild(option);
                     });
                 })
                 .catch(console.log("Error Estados"))
@@ -145,7 +156,8 @@
                                 </div>
                                 <div class="col-sm col-md-4 col-lg-4">
                                     <label for="estado" class="form-label">Estado:</label>
-                                    <input type="text" id="estado" class="form-control" placeholder="Estado" />
+                                    <!--<input type="text" id="estado" class="form-control" placeholder="Estado" />-->
+                                    <select id="selectEstado" name="estado" class="form-control"></select> 
                                 </div>
                                 <div class="col-sm col-md-4 col-lg-4">
                                     <label for="pais" class="form-label">País:</label>
