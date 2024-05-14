@@ -33,18 +33,22 @@
                     optionDefault.innerHTML = "Seleccione un Estado";
                     selectEstado.appendChild(optionDefault);
 
-                    ltEstados.forEach(estado => {
-                        console.log("Estado" + estado.NombreEstado);
+                    ltEstados.forEach(estado => {;
                         let option = document.createElement('option');
                         option.value = estado.idEstado;
                         option.innerHTML = estado.nombreEstado;
                         selectEstado.appendChild(option);
                     });
+
+                    selectEstado.addEventListener('click', function() {
+                        console.log(this.value);
+                        getMunicipios(this.value);
+                    });
                 })
                 .catch(console.log("Error Estados"))
             }
 
-            function getMunicipios() {
+            function getMunicipios(idEstado) {
                 fetch('https://micasaapptestapi.azurewebsites.net/api/municipios')
                 .then(response => response.json())
                 .then(ltMunicipios => {
@@ -197,6 +201,12 @@
                                 <div class="col">
                                     <label for="fotos" class="form-label">Subir fotos de trabajos:</label>
                                     <input type="file" id="fotos" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <label for="selfie" class="form-label">Tómate una selfie!</label>
+                                    <input type="file" id="fotografiaPersona" class="form-control" accept="image/*" capture="user" />
                                 </div>
                             </div>
                             <div class="row mb-3">
