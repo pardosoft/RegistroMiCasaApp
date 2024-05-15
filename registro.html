@@ -49,7 +49,7 @@
             }
 
             function getMunicipios(idEstado) {
-                fetch('https://micasaapptestapi.azurewebsites.net/api/municipios')
+                fetch('https://micasaapptestapi.azurewebsites.net/api/municipios?idEstado=' + idEstado)
                 .then(response => response.json())
                 .then(ltMunicipios => {
                     ltMunicipios.forEach(municipio => {
