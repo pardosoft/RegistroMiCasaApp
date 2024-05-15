@@ -49,11 +49,17 @@
             }
 
             function getMunicipios(idEstado) {
-                fetch('https://micasaapptestapi.azurewebsites.net/api/municipios')
+                fetch('https://micasaapptestapi.azurewebsites.net/api/municipios?idEstado=' + idEstado)
                 .then(response => response.json())
                 .then(ltMunicipios => {
+                    document.querySelectorAll('#selectMunicipio option').forEach(option => option.remove())
+
                     ltMunicipios.forEach(municipio => {
-                        console.log("Municipio: " + municipio.idMunicipio);
+                        console.log("Municipio: " + municipio.NombreMunicipio);
+                        let option = document.createElement('option');
+                        option.value = municipio.idMunicipio;
+                        option.innerHTML = municipio.nombreMunicipio;
+                        selectMunicipio.appendChild(option);
                     });
                 })
                 .catch(console.log("Error Municipios"))
@@ -156,7 +162,8 @@
                             <div class="row">
                                 <div class="col-sm col-md-4 col-lg-4">
                                     <label for="municipio" class="form-label">Municipio:</label>
-                                    <input type="text" id="municipio" class="form-control" placeholder="Municipio" />
+                                    <!--<input type="text" id="municipio" class="form-control" placeholder="Municipio" />-->
+                                    <select id="selectMunicipio" name="municipio" class="form-control"></select> 
                                 </div>
                                 <div class="col-sm col-md-4 col-lg-4">
                                     <label for="estado" class="form-label">Estado:</label>
@@ -212,13 +219,13 @@
                             <div class="row mb-3">
                                 <div class="col">
                                     <label for="identificacionOficial" class="form-label">Subir foto de indentificación oficial:</label>
-                                    <input type="file" id="identificacionOficial" class="form-control" />
+                                    <input type="file" id="identificacionOficial" class="form-control" accept="image/*" capture="environment" />
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <div class="col">
                                     <label for="comprobanteDomicilio" class="form-label">Subir foto de comprobante de domicilio:</label>
-                                    <input type="file" id="comprobanteDomicilio" class="form-control" />
+                                    <input type="file" id="comprobanteDomicilio" class="form-control" accept="image/*" capture="environment" />
                                 </div>
                             </div>
                             <!--<div>
