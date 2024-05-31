@@ -21,6 +21,7 @@
             let ltCategorias = new Object();
             ltCategorias = getCategorias();
             getEstados();
+            getCodigoPostal("66490");
 
             function getEstados() {
                 fetch('https://micasaapptestapi.azurewebsites.net/api/estados')
@@ -96,6 +97,15 @@
                     const containerCheckbox = document.querySelector('.container-checkbox');
                     containerCheckbox.innerHTML = strHtml;
                 });
+            }
+
+            async function getCodigoPostal(cp) {
+                fetch('https://micasaapptestapi.azurewebsites.net/api/CodigoPostal?cp=' + cp)
+                .then(response => response.json())
+                .then(codigoPostal =>  {
+                    console.log(codigoPostal);
+                })
+                .catch(console.log("Error codigoPostal"))
             }
         </script>
     </head>
