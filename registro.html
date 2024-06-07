@@ -3,261 +3,130 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Registro MiCasaApp</title>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-        <style>
-            header {
-                text-align: center;
-            }
-            .encabezado-1 {
-                font-size: 18px;
-                font-weight: 500;
-            }
-            .encabezado-2 {
-                font-weight: 500;
-            }
-        </style>
-        <script>
-            let ltCategorias = new Object();
-            ltCategorias = getCategorias();
-            getEstados();
-            getCodigoPostal("66490");
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
-            function getEstados() {
-                fetch('https://micasaapptestapi.azurewebsites.net/api/estados')
-                .then(response => response.json())
-                .then(ltEstados => {
-                    const selectEstado = document.getElementById('selectEstado');
-
-                    let optionDefault = document.createElement('option');
-                    optionDefault.value = 0;
-                    optionDefault.innerHTML = "Seleccione un Estado";
-                    selectEstado.appendChild(optionDefault);
-
-                    ltEstados.forEach(estado => {;
-                        let option = document.createElement('option');
-                        option.value = estado.idEstado;
-                        option.innerHTML = estado.nombreEstado;
-                        selectEstado.appendChild(option);
-                    });
-
-                    selectEstado.addEventListener('click', function() {
-                        console.log(this.value);
-                        getMunicipios(this.value);
-                    });
-                })
-                .catch(console.log("Error Estados"))
-            }
-
-            function getMunicipios(idEstado) {
-                fetch('https://micasaapptestapi.azurewebsites.net/api/municipios?idEstado=' + idEstado)
-                .then(response => response.json())
-                .then(ltMunicipios => {
-                    document.querySelectorAll('#selectMunicipio option').forEach(option => option.remove())
-
-                    ltMunicipios.forEach(municipio => {
-                        console.log("Municipio: " + municipio.NombreMunicipio);
-                        let option = document.createElement('option');
-                        option.value = municipio.idMunicipio;
-                        option.innerHTML = municipio.nombreMunicipio;
-                        selectMunicipio.appendChild(option);
-                    });
-                })
-                .catch(console.log("Error Municipios"))
-            }
-
-            async function getCategorias(url = 'https://micasaapptestapi.azurewebsites.net/api/categorias', data = {}) {
-                // Opciones por defecto estan marcadas con un *
-                const response = await fetch(url, {
-                    method: 'GET', // *GET, POST, PUT, DELETE, etc.
-                    mode: 'cors', // no-cors, *cors, same-origin
-                    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-                    credentials: 'same-origin', // include, *same-origin, omit
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json',
-                        'Origin': 'http://localhost:8080'
-                        // 'Content-Type': 'application/x-www-form-urlencoded',
-                    },
-                    redirect: 'follow', // manual, *follow, error
-                    referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-                }).then((response) => {
-                    return response.json();
-                }).then((data) => {
-                    let ltCategorias = data;
-                    console.log(ltCategorias.length);
-
-                    let strHtml = "";
-                    ltCategorias.forEach(categoria => {
-                        strHtml += `<div class="item-checkbox">
-                                    <input type="checkbox" name="ch${categoria.idCategoria}" id="ch${categoria.idCategoria}" />
-                                    <label for="ch${categoria.idCategoria}" class="form-label">${categoria.nombreCategoria}</label>
-                                </div>`;
-                    });
-                    const containerCheckbox = document.querySelector('.container-checkbox');
-                    containerCheckbox.innerHTML = strHtml;
-                });
-            }
-
-            async function getCodigoPostal(cp) {
-                fetch('https://micasaapptestapi.azurewebsites.net/api/CodigoPostal?cp=' + cp)
-                .then(response => response.json())
-                .then(codigoPostal =>  {
-                    console.log(codigoPostal);
-                })
-                .catch(console.log("Error codigoPostal"))
-            }
-        </script>
+        <link href="./css/reset.css" rel="stylesheet" />
+        <link href="./css/font-awesome.min.css" rel="stylesheet" />
+        <link href="./css/style.css" rel="stylesheet" />
     </head>
     <body>
         <header>
             MiCasaApp
         </header>
         <section>
-            <div class="container-lg">
-                <div class="row justify-content-center my-5">
-                    <div class="col-lg-9">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
                         <form>
-                            <div class="encabezado-1">Registrate y sé parte de MiCasaApp</div>
-                            <div class="encabezado-2">Ingresa tus datos de contacto</div>
-                            <div class="row mb-3">
-                                <div class="col-sm col-md-12 col-lg-12">
+                            <h1>Registrate y sé parte de MiCasaApp</h1>
+                            <h2>Ingresa tus datos de contacto</h2>
+                            <div class="row">
+                                <div class="col">
                                     <label for="email" class="form-label">Correo Electrónico:</label>
                                     <input type="email" id="email" class="form-control" placeholder="ejemplo@mail.com" />
                                 </div>
                             </div>
-                            <div class="row mb-3">
-                                <div class="col-sm col-md-12 col-lg-12">
+                            <div class="row">
+                                <div class="col">
                                     <label for="telefono" class="form-label">Teléfono:</label>
                                     <input type="tel" id="telefono" class="form-control" placeholder="81-" />
                                 </div>
                             </div>
-                            <div class="encabezado-2">Ingresa tu información personal</div>
-                            <div class="row mb-3">
-                                <div class="col-sm col-md-12 col-lg-12">
+                            <h2>Ingresa tu información personal</h2>
+                            <div class="row">
+                                <div class="col">
                                     <label for="nombre" class="form-label">Nombre:</label>
                                     <input type="text" id="nombre" class="form-control" placeholder="Juan" />
                                 </div>
                             </div>
-                            <div class="row mb-3">
-                                <div class="col-sm col-md-6 col-lg-6">
+                            <div class="row row-mb">
+                                <div class="col">
                                     <label for="paterno" class="form-label">Apellido Paterno:</label>
                                     <input type="text" id="paterno" class="form-control" placeholder="Perez" />
                                 </div>
-                                <div class="col-sm col-md-6 col-lg-6">
+                                <div class="col">
                                     <label for="materno" class="form-label">Apellido Materno:</label>
                                     <input type="text" id="materno" class="form-control" placeholder="Perez" />
                                 </div>
                             </div>
-                            <div class="row mb-3">
-                                <div class="col-sm col-md-6 col-lg-6">
+                            <div class="row row-mb">
+                                <div class="col">
                                     <label for="calle" class="form-label">Calle:</label>
                                     <input type="text" id="calle" class="form-control" placeholder="Calle" />
                                 </div>
-                                <div class="col-sm col-md-6 col-lg-6">
+                                <div class="col">
                                     <label for="numeroExt" class="form-label">Número:</label>
                                     <input type="text" id="numeroExt" class="form-control" placeholder="101" />
                                 </div>
                             </div>
-                            <div class="row mb-3">
-                                <div class="col-sm col-md-6 col-lg-6">
+                            <div class="row row-mb">
+                                <div class="col">
                                     <label for="colonia" class="form-label">Colonia:</label>
                                     <input type="text" id="colonia" class="form-control" placeholder="Colonia" />
                                 </div>
-                                <div class="col-sm col-md-6 col-lg-6">
+                                <div class="col">
                                     <label for="codigoPostal" class="form-label">Código Postal:</label>
                                     <input type="text" id="codigoPostal" class="form-control" placeholder="60001" />
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-sm col-md-4 col-lg-4">
+                            <div class="row row-mb">
+                                <div class="col">
                                     <label for="municipio" class="form-label">Municipio:</label>
                                     <!--<input type="text" id="municipio" class="form-control" placeholder="Municipio" />-->
                                     <select id="selectMunicipio" name="municipio" class="form-control"></select> 
                                 </div>
-                                <div class="col-sm col-md-4 col-lg-4">
+                                <div class="col">
                                     <label for="estado" class="form-label">Estado:</label>
                                     <!--<input type="text" id="estado" class="form-control" placeholder="Estado" />-->
                                     <select id="selectEstado" name="estado" class="form-control"></select> 
                                 </div>
-                                <div class="col-sm col-md-4 col-lg-4">
+                                <div class="col">
                                     <label for="pais" class="form-label">País:</label>
                                     <input type="text" id="pais" class="form-control" placeholder="México" />
                                 </div>
                             </div>
-                            <div class="encabezado-2">Elije las categorías en las que trabajas</div>
+                            <h2>Elije las categorías en las que trabajas</h2>
                             <div class="container-checkbox"></div>
-                            <!--<div class="row mb-3">
-                                <div class="col-sm col-md-6 col-lg-6">
-                                    <input type="checkbox" name="ch1" id="ch1" />
-                                    <label for="ch1" class="form-label">Albañilería</label>
-                                </div>
-                                <div class="col-sm col-md-6 col-lg-6">
-                                    <input type="checkbox" name="ch2" id="ch2" />
-                                    <label for="ch2" class="form-label">Plomería</label>
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col-sm col-md-6 col-lg-6">
-                                    <label for="ch3" class="form-label">Aire Acondicionado y Refrigreación</label>
-                                    <input type="checkbox" name="ch3" id="ch3" />
-                                </div>
-                                <div class="col-sm col-md-6 col-lg-6">
-                                    <label for="ch4" class="form-label">Soldaduría</label>
-                                    <input type="checkbox" name="ch4" id="ch4" />
-                                </div>
-                            </div>-->
-                            <div class="encabezado-2">Cuentanos más sobre ti y tus trabajos</div>
-                            <div class="row mb-3">
+                            <h2>Cuentanos más sobre ti y tus trabajos</h2>
+                            <div class="row">
                                 <div class="col">
                                     <label for="descripcion" class="form-label">Descripción de su trabajo:</label>
                                     <textarea id="descripcion" class="form-control" placeholder="Sobre mí..." rows="3"></textarea>
                                 </div>
                             </div>
-                            <div class="row mb-3">
-                                <div class="col">
-                                    <label for="fotos" class="form-label">Subir fotos de trabajos:</label>
-                                    <input type="file" id="fotos" class="form-control" />
+                            <div class="row">
+                                <div class="col col-file">
+                                    <input type="file" name="fotos" id="fotos" class="form-control" />
+                                    <label for="fotos" class="file-form-label"><i class="fa fa-camera" aria-hidden="true"></i>Fotos de Trabajos</label>
+                                    <span class="span-file-desc">Subir fotos de tus trabajos</span>
                                 </div>
                             </div>
-                            <div class="row mb-3">
-                                <div class="col">
-                                    <label for="selfie" class="form-label">Tómate una selfie!</label>
-                                    <input type="file" id="fotografiaPersona" class="form-control" accept="image/*" capture="user" />
+                            <div class="row">
+                                <div class="col col-file">
+                                    <input type="file" name="selfie" id="selfie" class="form-control" accept="image/*" capture="user" />
+                                    <label for="selfie" class="file-form-label"><i class="fa fa-user" aria-hidden="true"></i>Tomar selfie</label>
+                                    <span class="span-file-desc">Tómate una selfie!</span>
                                 </div>
                             </div>
-                            <div class="row mb-3">
-                                <div class="col">
-                                    <label for="identificacionOficial" class="form-label">Subir foto de indentificación oficial:</label>
-                                    <input type="file" id="identificacionOficial" class="form-control" accept="image/*" capture="environment" />
+                            <div class="row">
+                                <div class="col col-file">
+                                    <input type="file" name="idOficial" id="idOficial" class="form-control" accept="image/*" capture="environment" />
+                                    <label for="idOficial" class="file-form-label"><i class="fa fa-address-card" aria-hidden="true"></i>Foto INE</label>
+                                    <span class="span-file-desc">Subir foto de indentificación oficial (INE)</span>
                                 </div>
                             </div>
-                            <div class="row mb-3">
-                                <div class="col">
-                                    <label for="comprobanteDomicilio" class="form-label">Subir foto de comprobante de domicilio:</label>
+                            <div class="row">
+                                <div class="col col-file">
                                     <input type="file" id="comprobanteDomicilio" class="form-control" accept="image/*" capture="environment" />
+                                    <label for="comprobanteDomicilio" class="file-form-label"><i class="fa fa-file-text" aria-hidden="true"></i>Foto Recibo</label>
+                                    <span class="span-file-desc">Subir foto de comprobante de domicilio (Recibo)</span>
                                 </div>
                             </div>
-                            <!--<div>
-                                <label for="calle" class="form-label">Calle:</label>
-                                <input type="text" id="calle" class="form-control" placeholder="Calle" />
-                                <label for="numeroExt" class="form-label">Número:</label>
-                                <input type="text" id="numeroExt" class="form-control" placeholder="101" />
+                            <div class="div-field">
+                                <button type="button"><i class="fa fa-paper-plane" aria-hidden="true"></i>Enviar</button>
                             </div>
-                            <div>
-                                <label for="colonia" class="form-label">Colonia:</label>
-                                <input type="text" id="colonia" class="form-control" placeholder="Colonia" />
-                                <label for="codigoPostal" class="form-label">Código Postal:</label>
-                                <input type="text" id="codigoPostal" class="form-control" placeholder="60001" />
-                            </div>
-                            <div>
-                                <label for="municipio" class="form-label">Municipio:</label>
-                                <input type="text" id="municipio" class="form-control" placeholder="Municipio" />
-                                <label for="estado" class="form-label">Estado:</label>
-                                <input type="text" id="estado" class="form-control" placeholder="Estado" />
-                                <label for="pais" class="form-label">País:</label>
-                                <input type="text" id="pais" class="form-control" placeholder="México" />
-                            </div>-->
                         </form>
                     </div>
                 </div>
@@ -267,5 +136,6 @@
             <p>Términos y Condiciones</p>
             <p>Aviso de Privacidad</p>
         </footer>
+        <script src="./js/script.js"></script>
     </body>
 </html>
