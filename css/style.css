@@ -150,6 +150,18 @@ footer {
 .div-field {
     text-align: center;
 }
+.container-checkbox {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.item-checkbox {
+    flex-grow: 1;
+    width: 50%;
+    /* display: flex; */
+    align-items: center;
+    margin-bottom: 6px;
+}
 
 @media (max-width: 768px) {
     .container {
@@ -165,5 +177,12 @@ footer {
     }
     button {
         width: 100%;
+    }
+    .item-checkbox {
+        flex-grow: 1;
+        width: 100%;
+        /* display: flex; */
+        align-items: center;
+        margin-bottom: 6px;
     }
 }

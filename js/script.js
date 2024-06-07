@@ -3,6 +3,51 @@ ltCategorias = getCategorias();
 getEstados();
 getCodigoPostal("66490");
 
+const btnEnviar = document.getElementById("btn-enviar");
+btnEnviar.addEventListener('click', function () {
+    /* Validar todos los campos */
+    let tEmail = document.getElementById("email");
+    let tTelefono = document.getElementById("telefono");
+    let tNombre = document.getElementById("nombre");
+    let tApellidoPaterno = document.getElementById("paterno");
+    let tApellidoMaterno = document.getElementById("materno");
+    let tCalle = document.getElementById("calle");
+    let tNumeroExt = document.getElementById("numeroExt");
+    let tColonia = document.getElementById("colonia");
+    let tCodigoPostal = document.getElementById("codigoPostal");
+    let sEstado = document.getElementById("selectEstado");
+    let sMunicipio = document.getElementById("selectMunicipio");
+    let tPais = document.getElementById("pais");
+
+    if(!validateEmail) alert("Escriba un correo válido.");
+    if(tTelefono.length == 0) alert("Escriba un número de teléfono.");
+    if(tNombre.length == 0) alert("Escriba su nomnbre.");
+    if(tApellidoPaterno.length == 0) alert("Escriba su apellido paterno.");
+    if(tApellidoMaterno.length == 0) alert("Escriba su apellido materno.");
+    if(tCalle.length == 0) alert("Escriba la calle donde vive.");
+    if(tNumeroExt.length == 0) alert("Escriba el numero exterior de su casa.");
+    if(tColonia.length == 0) alert("Escriba el nombre de su coloina.");
+    if(tCodigoPostal.length == 0) alert("Escriba su código postal.");
+    if(sEstado.value == null || sEstado.value < 1) alert("Elija el estado donde vive.");
+    if(sMunicipio.value == null || sMunicipio.value < 1) alert("Elija el municipio donde vive.");
+
+    let checks = document.querySelectorAll(".checks-categorias:checked");
+    let arrayChecks = new Array();
+    for(let i = 0; i < checks.length; i++) {
+        arrayChecks.push(checks[i].value);
+    }
+
+    console.log(arrayChecks);
+});
+
+const validateEmail = (email) => {
+    return email.match(
+        /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    );
+};
+
+
+
 function getEstados() {
     fetch('https://micasaapptestapi.azurewebsites.net/api/estados')
         .then(response => response.json())
@@ -70,7 +115,7 @@ async function getCategorias(url = 'https://micasaapptestapi.azurewebsites.net/a
         let strHtml = "";
         ltCategorias.forEach(categoria => {
             strHtml += `<div class="item-checkbox">
-                                    <input type="checkbox" name="ch${categoria.idCategoria}" id="ch${categoria.idCategoria}" />
+                                    <input type="checkbox" name="ch${categoria.idCategoria}" id="ch${categoria.idCategoria}" class="checks-categorias"/>
                                     <label for="ch${categoria.idCategoria}" class="form-label">${categoria.nombreCategoria}</label>
                                 </div>`;
         });
