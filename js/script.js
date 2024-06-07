@@ -6,7 +6,7 @@ getCodigoPostal("66490");
 const btnEnviar = document.getElementById("btn-enviar");
 btnEnviar.addEventListener('click', function () {
     /* Validar todos los campos */
-    let tEmail = document.getElementById("email");
+    /*let tEmail = document.getElementById("email");
     let tTelefono = document.getElementById("telefono");
     let tNombre = document.getElementById("nombre");
     let tApellidoPaterno = document.getElementById("paterno");
@@ -29,7 +29,7 @@ btnEnviar.addEventListener('click', function () {
     if(tColonia.length == 0) alert("Escriba el nombre de su coloina.");
     if(tCodigoPostal.length == 0) alert("Escriba su código postal.");
     if(sEstado.value == null || sEstado.value < 1) alert("Elija el estado donde vive.");
-    if(sMunicipio.value == null || sMunicipio.value < 1) alert("Elija el municipio donde vive.");
+    if(sMunicipio.value == null || sMunicipio.value < 1) alert("Elija el municipio donde vive.");*/
 
     let checks = document.querySelectorAll(".checks-categorias:checked");
     let arrayChecks = new Array();
@@ -124,7 +124,7 @@ async function getCategorias(url = 'https://micasaapptestapi.azurewebsites.net/a
     });
 }
 
-async function getCodigoPostal(cp) {
+/*async function getCodigoPostal(cp) {
     fetch('https://micasaapptestapi.azurewebsites.net/api/CodigoPostal?cp=' + cp)
         .then(response => response.json())
         .then(codigoPostal => {
@@ -135,4 +135,4 @@ async function getCodigoPostal(cp) {
                 codigoPostal.estado
         })
         .catch(console.log("Error codigoPostal"))
-}
+}*/
