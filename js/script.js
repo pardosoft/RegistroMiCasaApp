@@ -115,7 +115,7 @@ async function getCategorias(url = 'https://micasaapptestapi.azurewebsites.net/a
         let strHtml = "";
         ltCategorias.forEach(categoria => {
             strHtml += `<div class="item-checkbox">
-                                    <input type="checkbox" name="ch${categoria.idCategoria}" id="ch${categoria.idCategoria}" class="checks-categorias"/>
+                                    <input type="checkbox" name="checks-categorias" id="ch${categoria.idCategoria}" class="checks-categorias" value="${categoria.idCategoria}"/>
                                     <label for="ch${categoria.idCategoria}" class="form-label">${categoria.nombreCategoria}</label>
                                 </div>`;
         });
