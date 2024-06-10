@@ -131,8 +131,8 @@ const validateEmail = (email) => {
 
 
 
-function getEstados() {
-    fetch('https://micasaapptestapi.azurewebsites.net/api/estados')
+async function getEstados() {
+    const response = await fetch('https://micasaapptestapi.azurewebsites.net/api/estados')
         .then(response => response.json())
         .then(ltEstados => {
             const selectEstado = document.getElementById('selectEstado');
