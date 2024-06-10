@@ -157,11 +157,17 @@ async function getEstados() {
         .catch(console.log("Error Estados"))
 }
 
-function getMunicipios(idEstado) {
-    fetch('https://micasaapptestapi.azurewebsites.net/api/municipios?idEstado=' + idEstado)
+async function getMunicipios(idEstado) {
+    const response = await fetch('https://micasaapptestapi.azurewebsites.net/api/municipios?idEstado=' + idEstado)
         .then(response => response.json())
         .then(ltMunicipios => {
-            document.querySelectorAll('#selectMunicipio option').forEach(option => option.remove())
+            document.querySelectorAll('#selectMunicipio option').forEach(option => option.remove());
+            const selectMunicipio = document.getElementById('selectMunicipio');
+
+            let optionDefault = document.createElement('option');
+            optionDefault.value = 0;
+            optionDefault.innerHTML = "Seleccione un Municipio";
+            selectEstado.appendChild(optionDefault);
 
             ltMunicipios.forEach(municipio => {
                 console.log("Municipio: " + municipio.NombreMunicipio);
@@ -177,7 +183,7 @@ function getMunicipios(idEstado) {
 async function postRegistro(pRegistro) {
     const response = await fetch("https://micasaapptestapi.azurewebsites.net/api/registro", {
         method: "POST",
-        body: JSON.stringify({registro: pRegistro}),
+        body: JSON.stringify(pRegistro),
         headers: {
             "Content-type": "application/json; charset=UTF-8"
         }
