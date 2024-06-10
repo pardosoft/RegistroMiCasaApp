@@ -76,7 +76,7 @@ btnEnviar.addEventListener('click', function () {
     let checks = document.querySelectorAll(".checks-categorias:checked");
     let arrayChecks = new Array();
     for(let i = 0; i < checks.length; i++) {
-        arrayChecks.push(checks[i].value, "X");
+        arrayChecks.push({"IdCategoria": checks[i].value, "NombreCategoria": "X"});
     }
 
     console.log(arrayChecks);
