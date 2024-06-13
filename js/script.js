@@ -76,7 +76,8 @@ btnEnviar.addEventListener('click', function () {
     let checks = document.querySelectorAll(".checks-categorias:checked");
     let arrayChecks = new Array();
     for(let i = 0; i < checks.length; i++) {
-        arrayChecks.push({"IdCategoria": checks[i].value, "NombreCategoria": "X"});
+        //arrayChecks.push({"IdCategoria": checks[i].value, "NombreCategoria": "X"});
+        arrayChecks.push(checks[i].value);
     }
 
     console.log(arrayChecks);
@@ -149,7 +150,7 @@ async function getEstados() {
                 selectEstado.appendChild(option);
             });
 
-            selectEstado.addEventListener('click', function () {
+            selectEstado.addEventListener('change', function () {
                 console.log(this.value);
                 getMunicipios(this.value);
             });
@@ -192,7 +193,47 @@ async function postRegistro(pRegistro) {
     .then((json) => console.log(json));
 }
 
-async function getCategorias(url = 'https://micasaapptestapi.azurewebsites.net/api/categorias', data = {}) {
+async function getSubcategorias() {
+    const response = await fetch('https://micasaapptestapi.azurewebsites.net/api/subcategorias')
+    .then(ltSubcategorias => response.json())
+    .then(ltSubcategorias => {
+        let iAnterior = 0;
+        let html = "";
+        ltSubcategorias.forEach((subcategoria, index) => {
+            if(index == 0) {
+                html += `
+                    <div class="item-checkbox">
+                        <button type="button" class="list-categoria" id="sd">${subcategoria.idCategoria}</button>
+                    <div class="list-subcategorias">`;
+                iAnterior = subcategoria.idCategoria;
+            }
+            i = subcategoria.idCategoria;
+            if(i == iAnterior) {
+                // Misma Categoría, agregar checkbox al div de esta categoría
+                html += `
+                    <div>
+                        <input type="checkbox" name="checks-categorias" id="ch${subcategoria.idSubcategoria}" class="checks-categorias" value="${subcategoria.idSubcategoria}">
+                        <label for="ch${subcategoria.idSubcategoria}" class="form-label">${subcategoria.nombreSubcategoria}</label>
+                    </div>`;
+            }
+            else {
+                // Otra catergoría, cerrar el div de la categoría anterior 
+                // y crear nuevo div con categoría actual
+                html += `
+                    </div>
+                    <div class="item-checkbox">
+                        <button type="button" class="list-categoria" id="sd">${subcategoria.idCategoria}</button>
+                    <div class="list-subcategorias">`;
+            }
+        });
+        html += "</div>";
+
+        const containerCheckbox = document.querySelector('.container-checkbox');
+        containerCheckbox.innerHTML = html;
+    })
+}
+
+/*async function getCategorias(url = 'https://micasaapptestapi.azurewebsites.net/api/categorias', data = {}) {
     // Opciones por defecto estan marcadas con un *
     const response = await fetch(url, {
         method: 'GET', // *GET, POST, PUT, DELETE, etc.
@@ -223,7 +264,7 @@ async function getCategorias(url = 'https://micasaapptestapi.azurewebsites.net/a
         const containerCheckbox = document.querySelector('.container-checkbox');
         containerCheckbox.innerHTML = strHtml;
     });
-}
+}*/
 
 /*async function getCodigoPostal(cp) {
     fetch('https://micasaapptestapi.azurewebsites.net/api/CodigoPostal?cp=' + cp)
