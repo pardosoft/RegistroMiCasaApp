@@ -205,7 +205,7 @@ async function getSubcategorias() {
                 html += `
                     <div class="item-checkbox">
                         <button type="button" class="list-categoria" id="sd">${subcategoria.idCategoria}</button>
-                    <div class="list-subcategorias">`;
+                        <div class="list-subcategorias">`;
                 iAnterior = subcategoria.idCategoria;
             }
             i = subcategoria.idCategoria;
@@ -222,10 +222,11 @@ async function getSubcategorias() {
                 // y crear nuevo div con categoría actual
                 iAnterior = i;
                 html += `
+                        </div>
                     </div>
                     <div class="item-checkbox">
                         <button type="button" class="list-categoria" id="sd">${subcategoria.idCategoria}</button>
-                    <div class="list-subcategorias">`;
+                        <div class="list-subcategorias">`;
             }
         });
         html += "</div>";
