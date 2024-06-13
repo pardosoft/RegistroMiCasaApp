@@ -4,17 +4,6 @@ getEstados();
 getSubcategorias();
 //getCodigoPostal("66490");
 
-const categoria = document.querySelectorAll(".list-categoria");
-console.log(categoria);
-for(let i = 0; i < categoria.length; i++) {
-    categoria[i].addEventListener('click', function() {
-        console.log(this);
-        const sub = this.nextElementSibling;
-        sub.toggle();
-    });
-}
-
-
 const btnEnviar = document.getElementById("btn-enviar");
 btnEnviar.addEventListener('click', function () {
     /* Validar todos los campos */
@@ -244,6 +233,15 @@ async function getSubcategorias() {
 
         const containerCheckbox = document.querySelector('.container-checkbox');
         containerCheckbox.innerHTML = html;
+
+        const categoria = document.querySelectorAll(".list-categoria");
+        for(let i = 0; i < categoria.length; i++) {
+            categoria[i].addEventListener('click', function() {
+                console.log(this);
+                const sub = this.nextElementSibling;
+                sub.toggle();
+            });
+        }
     })
 }
 
