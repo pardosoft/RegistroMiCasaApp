@@ -196,7 +196,7 @@ async function postRegistro(pRegistro) {
 
 async function getSubcategorias() {
     const response = await fetch('https://micasaapptestapi.azurewebsites.net/api/subcategorias')
-    .then(ltSubcategorias => response.json())
+    .then(response => response.json())
     .then(ltSubcategorias => {
         let iAnterior = 0;
         let html = "";
