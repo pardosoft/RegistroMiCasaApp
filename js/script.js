@@ -220,6 +220,7 @@ async function getSubcategorias() {
             else {
                 // Otra catergoría, cerrar el div de la categoría anterior 
                 // y crear nuevo div con categoría actual
+                iAnterior = i;
                 html += `
                     </div>
                     <div class="item-checkbox">
