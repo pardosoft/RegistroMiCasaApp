@@ -1,6 +1,7 @@
 let ltCategorias = new Object();
 ltCategorias = getCategorias();
 getEstados();
+getSubcategorias();
 //getCodigoPostal("66490");
 
 const btnEnviar = document.getElementById("btn-enviar");
