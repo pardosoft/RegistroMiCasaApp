@@ -1,5 +1,5 @@
-let ltCategorias = new Object();
-ltCategorias = getCategorias();
+//let ltCategorias = new Object();
+//ltCategorias = getCategorias();
 getEstados();
 getSubcategorias();
 //getCodigoPostal("66490");
