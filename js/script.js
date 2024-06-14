@@ -204,7 +204,7 @@ async function getSubcategorias() {
             if(index == 0) {
                 html += `
                     <div class="item-checkbox">
-                        <button type="button" class="list-categoria" id="sd">${subcategoria.idCategoria}</button>
+                        <button type="button" class="list-categoria" id="sd">${subcategoria.NombreCategoria}</button>
                         <div class="list-subcategorias">`;
                 iAnterior = subcategoria.idCategoria;
             }
