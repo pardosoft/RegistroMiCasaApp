@@ -158,7 +158,7 @@ footer {
 }
 .item-checkbox {
     flex-grow: 1;
-    /* width: 50%; */
+    width: auto;
     /* display: flex; */
     align-items: center;
     margin-bottom: 6px;

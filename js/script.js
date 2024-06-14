@@ -204,7 +204,7 @@ async function getSubcategorias() {
             if(index == 0) {
                 html += `
                     <div class="item-checkbox">
-                        <button type="button" class="list-categoria" id="sd">${subcategoria.NombreCategoria}</button>
+                        <button type="button" class="list-categoria" id="sd">${subcategoria.nombreCategoria}</button>
                         <div class="list-subcategorias">`;
                 iAnterior = subcategoria.idCategoria;
             }
@@ -225,7 +225,7 @@ async function getSubcategorias() {
                         </div>
                     </div>
                     <div class="item-checkbox">
-                        <button type="button" class="list-categoria" id="sd">${subcategoria.idCategoria}</button>
+                        <button type="button" class="list-categoria" id="sd">${subcategoria.nombreCategoria}</button>
                         <div class="list-subcategorias">`;
             }
         });
@@ -292,7 +292,7 @@ async function getSubcategorias() {
 }*/
 
 Element.prototype.toggle = function() { 
-    if ( this.style.display == '' || this.style.display == 'block' ) {
+    if ( this.style.display == '' || !this.style.display == 'none' ) {
         this.style.display = 'none';
     }
     else {
