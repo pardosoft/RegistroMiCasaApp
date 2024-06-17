@@ -198,7 +198,9 @@ async function getSubcategorias() {
     const response = await fetch('https://micasaapptestapi.azurewebsites.net/api/subcategorias')
     .then(response => response.json())
     .then(ltSubcategorias => {
-        let iAnterior = 0;
+        if(ltSubcategorias.length == 0) return;
+        let categoriaActual = ltSubcategorias[0].idCategoria;
+        let categoriaAnterior = ltSubcategorias[0].idCategoria;;
         let html = "";
         ltSubcategorias.forEach((subcategoria, index) => {
             if(index == 0) {
@@ -206,10 +208,9 @@ async function getSubcategorias() {
                     <div class="item-checkbox">
                         <button type="button" class="list-categoria" id="sd">${subcategoria.nombreCategoria} ▼</button>
                         <div class="list-subcategorias">`;
-                iAnterior = subcategoria.idCategoria;
             }
-            i = subcategoria.idCategoria;
-            if(i == iAnterior) {
+            categoriaActual = subcategoria.idCategoria;
+            if(categoriaActual == categoriaAnterior) {
                 // Misma Categoría, agregar checkbox al div de esta categoría
                 html += `
                     <div>
@@ -220,7 +221,7 @@ async function getSubcategorias() {
             else {
                 // Otra catergoría, cerrar el div de la categoría anterior 
                 // y crear nuevo div con categoría actual
-                iAnterior = i;
+                categoriaAnterior = subcategoria.idCategoria;
                 html += `
                         </div>
                     </div>
