@@ -119,7 +119,7 @@ btnEnviar.addEventListener('click', function () {
         "idMunicipio": 1,
         "idPais": "1",
         "descripcionTrabajo": tDescripcion,
-        "listCategorias": arrayChecks
+        "listSubcategorias": arrayChecks
     }
 
     postRegistro(registro);
