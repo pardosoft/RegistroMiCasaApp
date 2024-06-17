@@ -214,7 +214,7 @@ async function getSubcategorias() {
                 html += `
                     <div>
                         <input type="checkbox" name="checks-categorias" id="ch${subcategoria.idSubcategoria}" class="checks-categorias" value="${subcategoria.idSubcategoria}">
-                        <label for="ch${subcategoria.idSubcategoria}" class="form-label">${subcategoria.nombreSubcategoria}</label>
+                        <label for="ch${subcategoria.idSubcategoria}" class="form-label">${subcategoria.nombreSubcategoria} ▼</label>
                     </div>`;
             }
             else {
@@ -237,9 +237,8 @@ async function getSubcategorias() {
         const categoria = document.querySelectorAll(".list-categoria");
         for(let i = 0; i < categoria.length; i++) {
             categoria[i].addEventListener('click', function() {
-                console.log(this);
                 const sub = this.nextElementSibling;
-                sub.toggle();
+                sub.toggle(this);
             });
         }
     })
@@ -291,11 +290,20 @@ async function getSubcategorias() {
         .catch(console.log("Error codigoPostal"))
 }*/
 
-Element.prototype.toggle = function() { 
-    if ( this.style.display == '' || !this.style.display == 'none' ) {
+Element.prototype.toggle = function(sibling) { 
+    if ( this.style.display == '') {
+        this.style.display = 'block';
+        let txtContent = sibling.textContent.substring(0, sibling.textContent.length - 1);
+        sibling.textContent = txtContent + '▲';
+    }
+    else if( this.style.display == 'block' ) {
         this.style.display = 'none';
+        let txtContent = sibling.textContent.substring(0, sibling.textContent.length - 1);
+        sibling.textContent = txtContent + '▼';
     }
     else {
         this.style.display = 'block';
+        let txtContent = sibling.textContent.substring(0, sibling.textContent.length - 1);
+        sibling.textContent = txtContent + '▲';
     }
 }
