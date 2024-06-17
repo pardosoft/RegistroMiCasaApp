@@ -70,7 +70,7 @@ btnEnviar.addEventListener('click', function () {
         return;
     }*/
     if(tDescripcion.length == 0) {
-        alert("Escriba una descripción de su trabjo.");
+        alert("Escriba una descripción de su trabajo.");
         return;
     }
 
@@ -204,7 +204,7 @@ async function getSubcategorias() {
             if(index == 0) {
                 html += `
                     <div class="item-checkbox">
-                        <button type="button" class="list-categoria" id="sd">${subcategoria.nombreCategoria}</button>
+                        <button type="button" class="list-categoria" id="sd">${subcategoria.nombreCategoria} ▼</button>
                         <div class="list-subcategorias">`;
                 iAnterior = subcategoria.idCategoria;
             }
@@ -214,7 +214,7 @@ async function getSubcategorias() {
                 html += `
                     <div>
                         <input type="checkbox" name="checks-categorias" id="ch${subcategoria.idSubcategoria}" class="checks-categorias" value="${subcategoria.idSubcategoria}">
-                        <label for="ch${subcategoria.idSubcategoria}" class="form-label">${subcategoria.nombreSubcategoria} ▼</label>
+                        <label for="ch${subcategoria.idSubcategoria}" class="form-label">${subcategoria.nombreSubcategoria}</label>
                     </div>`;
             }
             else {
@@ -306,4 +306,17 @@ Element.prototype.toggle = function(sibling) {
         let txtContent = sibling.textContent.substring(0, sibling.textContent.length - 1);
         sibling.textContent = txtContent + '▲';
     }
+}
+
+document.getElementById('fotos').onchange = function () {
+    document.getElementById('p-fotos').innerHTML = document.getElementById('fotos').files[0].name;
+}
+document.getElementById('selfie').onchange = function () {
+    document.getElementById('p-selfie').innerHTML = document.getElementById('selfie').files[0].name;
+}
+document.getElementById('idOficial').onchange = function () {
+    document.getElementById('p-idOficial').innerHTML = document.getElementById('idOficial').files[0].name;
+}
+document.getElementById('comprobanteDomicilio').onchange = function () {
+    document.getElementById('p-comprobanteDomicilio').innerHTML = document.getElementById('comprobanteDomicilio').files[0].name;
 }
