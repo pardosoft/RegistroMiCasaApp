@@ -227,7 +227,11 @@ async function getSubcategorias() {
                     </div>
                     <div class="item-checkbox">
                         <button type="button" class="list-categoria" id="sd">${subcategoria.nombreCategoria} ▼</button>
-                        <div class="list-subcategorias">`;
+                        <div class="list-subcategorias">
+                            <div>
+                                <input type="checkbox" name="checks-categorias" id="ch${subcategoria.idSubcategoria}" class="checks-categorias" value="${subcategoria.idSubcategoria}">
+                                <label for="ch${subcategoria.idSubcategoria}" class="form-label">${subcategoria.nombreSubcategoria}</label>
+                            </div>`;
             }
         });
         html += "</div>";
