@@ -360,7 +360,7 @@ function removeOverlay() {
 
 function addLoader() {
     // Create loader element
-    const loader = document.createElement("div");
+    const loader = document.createElement("span");
     loader.classList.add("loader"); // Add class for styling
     document.body.appendChild(loader); // Append overlay to the body
 }
