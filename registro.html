@@ -313,6 +313,15 @@
             <p>Términos y Condiciones</p>
             <p>Aviso de Privacidad</p>
         </footer>
+        <div id="popup-aviso-registro" class="popup popup-success hidden">
+            <div class="popup-content">
+                <div class="popup-content-header">Genial!</div>
+                <div class="popup-content-body">Te has registrado con éxito a MiCasaApp</div>
+                <div class="popup-content-footer">
+                    <button id="btn-popup-aceptar" type="button" class="button-success">Aceptar</button>
+                </div>
+            </div>
+        </div>
         <!--<script>
             Element.prototype.toggle = function(sibling) { 
                 if ( this.style.display == '') {
@@ -351,6 +360,31 @@
             }
             document.getElementById('comprobanteDomicilio').onchange = function () {
                 document.getElementById('p-comprobanteDomicilio').innerHTML = document.getElementById('comprobanteDomicilio').files[0].name;
+            }
+
+            const btnEnviar = document.getElementById("btn-enviar");
+            btnEnviar.addEventListener('click', function () {
+                addOverlay();
+                const popup = document.getElementById("popup-aviso-registro");
+                popup.classList.toggle("hidden");
+            });
+            const btnAceptar = document.getElementById("btn-popup-aceptar");
+            btnAceptar.addEventListener('click', function () {
+                const popup = document.getElementById("popup-aviso-registro");
+                popup.classList.toggle("hidden");
+                removeOverlay();
+            });
+            function addOverlay() {
+                // Create overlay element
+                const overlay = document.createElement("div");
+                overlay.classList.add("overlay"); // Add class for styling
+                document.body.appendChild(overlay); // Append overlay to the body
+            }
+            function removeOverlay() {
+                const overlay = document.querySelector(".overlay");
+                if (overlay) {
+                    overlay.parentNode.removeChild(overlay); // Remove overlay if exists
+                }
             }
         </script>-->
         <script src="./js/script.js"></script>

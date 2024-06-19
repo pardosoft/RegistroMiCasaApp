@@ -156,7 +156,9 @@ async function getEstados() {
                 getMunicipios(this.value);
             });
         })
-        .catch(console.log("Error Estados"))
+        .catch(error => {
+            console.error('Fetch error:', error);
+        });
 }
 
 async function getMunicipios(idEstado) {
@@ -183,6 +185,8 @@ async function getMunicipios(idEstado) {
 }
 
 async function postRegistro(pRegistro) {
+    addOverlay();
+    addLoader();
     const response = await fetch("https://micasaapptestapi.azurewebsites.net/api/registro", {
         method: "POST",
         body: JSON.stringify(pRegistro),
@@ -191,10 +195,17 @@ async function postRegistro(pRegistro) {
         }
     })
     .then((response) => response.json())
-    .then((json) => console.log(json));
+    .then((json) => {
+        console.log(json);
+        const popup = document.getElementById("popup-aviso-registro");
+        removeLoader();
+        popup.classList.toggle("hidden");
+    });
 }
 
 async function getSubcategorias() {
+    addOverlay();
+    addLoader();
     const response = await fetch('https://micasaapptestapi.azurewebsites.net/api/subcategorias')
     .then(response => response.json())
     .then(ltSubcategorias => {
@@ -246,7 +257,9 @@ async function getSubcategorias() {
                 sub.toggle(this);
             });
         }
-    })
+        removeLoader();
+        removeOverlay();
+    });
 }
 
 /*async function getCategorias(url = 'https://micasaapptestapi.azurewebsites.net/api/categorias', data = {}) {
@@ -324,4 +337,36 @@ document.getElementById('idOficial').onchange = function () {
 }
 document.getElementById('comprobanteDomicilio').onchange = function () {
     document.getElementById('p-comprobanteDomicilio').innerHTML = document.getElementById('comprobanteDomicilio').files[0].name;
+}
+
+const btnAceptar = document.getElementById("btn-popup-aceptar");
+btnAceptar.addEventListener('click', function () {
+    const popup = document.getElementById("popup-aviso-registro");
+    popup.classList.toggle("hidden");
+    removeOverlay();
+});
+function addOverlay() {
+    // Create overlay element
+    const overlay = document.createElement("div");
+    overlay.classList.add("overlay"); // Add class for styling
+    document.body.appendChild(overlay); // Append overlay to the body
+}
+function removeOverlay() {
+    const overlay = document.querySelector(".overlay");
+    if (overlay) {
+        overlay.parentNode.removeChild(overlay); // Remove overlay if exists
+    }
+}
+
+function addLoader() {
+    // Create loader element
+    const loader = document.createElement("div");
+    loader.classList.add("loader"); // Add class for styling
+    document.body.appendChild(loader); // Append overlay to the body
+}
+function removeLoader() {
+    const loader = document.querySelector(".loader");
+    if (loader) {
+        loader.parentNode.removeChild(loader); // Remove overlay if exists
+    }
 }
