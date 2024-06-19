@@ -250,10 +250,9 @@ p.fileName {
 .loader {
     width: 64px;
     height: 64px;
-    border: 8px solid #FFF;
-    border-bottom-color: #242329;
+    border: 8px solid #f4f0e7;
+    border-bottom-color: #ff4700;
     border-radius: 50%;
-    display: none;
     box-sizing: border-box;
     animation: rotation 0.8s linear infinite;
     position: fixed;
@@ -261,6 +260,15 @@ p.fileName {
     right: 50%;
     z-index: 100;
 }
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+} 
 
 @media (max-width: 768px) {
     .container {
