@@ -109,7 +109,7 @@ function validarCampos(event) {
     }
     if(document.getElementById("comprobanteDomicilio").files.length == 0 ){
         alert("Debe seleccionar un archivo o fotografía de su comprobante de domicilio.");
-        return;
+        return; 
     }
 
     let registro = {
