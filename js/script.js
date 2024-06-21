@@ -4,7 +4,7 @@ getEstados();
 getSubcategorias();
 //getCodigoPostal("66490");
 
-const btnEnviar = document.getElementById("btn-enviar");
+const formRegistro = document.getElementById("form-registro");
 function validarCampos(event) {
 
     event.preventDefault();
@@ -140,7 +140,7 @@ function validarCampos(event) {
     postRegistro(formData);
 }
 
-btnEnviar.addEventListener('submit', event => validarCampos(event));
+formRegistro.addEventListener('submit', event => validarCampos(event));
 
 const validateEmail = (email) => {
     return email.match(
