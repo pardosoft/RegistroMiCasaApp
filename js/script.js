@@ -5,7 +5,10 @@ getSubcategorias();
 //getCodigoPostal("66490");
 
 const btnEnviar = document.getElementById("btn-enviar");
-btnEnviar.addEventListener('click', function () {
+function validarCampos(event) {
+
+    event.preventDefault();
+    
     /* Validar todos los campos */
     let tEmail = document.getElementById("email").value;
     let tTelefono = document.getElementById("telefono").value;
@@ -20,6 +23,10 @@ btnEnviar.addEventListener('click', function () {
     let sMunicipio = document.getElementById("selectMunicipio").value;
     let tPais = document.getElementById("pais").value;
     let tDescripcion = document.getElementById("descripcion").value;
+    let fFotosTrabajo = document.getElementById("fotos");
+    let fSelfie = document.getElementById("selfie");
+    let fIdOficial = document.getElementById("idOficial");
+    let fComprobanteDomicilio = document.getElementById("comporbanteDomicilio");
 
     if(tEmail.length == 0) {
         alert("Escriba un correo electrónico válido.");
@@ -122,8 +129,18 @@ btnEnviar.addEventListener('click', function () {
         "listSubcategorias": arrayChecks
     }
 
-    postRegistro(registro);
-});
+    //postRegistro(registro);
+    const formData = new FormData();
+    formData.append("registro", registro);
+    formData.append("fotosTrabajo", fFotosTrabajo.files[0]);
+    formData.append("selfie", fSelfie.files[0]);
+    formData.append("idOficial", fIdOficial.files[0]);
+    formData.append("comprobanteDomicilio", fComprobanteDomicilio.files[0]);
+
+    postRegistro(formData);
+}
+
+btnEnviar.addEventListener('submit', event => validarCampos(event));
 
 const validateEmail = (email) => {
     return email.match(
@@ -189,7 +206,8 @@ async function postRegistro(pRegistro) {
     addLoader();
     const response = await fetch("https://micasaapptestapi.azurewebsites.net/api/registro", {
         method: "POST",
-        body: JSON.stringify(pRegistro),
+        //body: JSON.stringify(pRegistro),
+        body: pRegistro,
         headers: {
             "Content-type": "application/json; charset=UTF-8"
         }
