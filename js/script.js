@@ -26,7 +26,7 @@ function validarCampos(event) {
     let fFotosTrabajo = document.getElementById("fotos");
     let fSelfie = document.getElementById("selfie");
     let fIdOficial = document.getElementById("idOficial");
-    let fComprobanteDomicilio = document.getElementById("comporbanteDomicilio");
+    let fComprobanteDomicilio = document.getElementById("comprobanteDomicilio");
 
     if(tEmail.length == 0) {
         alert("Escriba un correo electrónico válido.");
