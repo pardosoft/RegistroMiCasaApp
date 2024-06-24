@@ -112,7 +112,7 @@ function validarCampos(event) {
         return; 
     }
 
-    let registro = {
+    /*let registro = {
         "email": tEmail,
         "telefono": tTelefono,
         "nombre": tNombre,
@@ -127,10 +127,24 @@ function validarCampos(event) {
         "idPais": "1",
         "descripcionTrabajo": tDescripcion,
         "listSubcategorias": arrayChecks
-    }
+    }*/
 
     //postRegistro(registro);
     const formData = new FormData();
+
+    formData.append("Email", tEmail);
+    formData.append("Telefono", tTelefono);
+    formData.append("Nombre", tNombre);
+    formData.append("ApellidoPaterno", tApellidoPaterno);
+    formData.append("ApellidoMaterno", tApellidoMaterno);
+    formData.append("Calle", tCalle);
+    formData.append("NumeroExt", tNumeroExt);
+    formData.append("Colonia", tColonia);
+    formData.append("CodigoPostal", tCodigoPostal);
+    formData.append("idPais", tPais);
+    formData.append("ListSubcategorias", arrayChecks);
+    formData.append("DescripcionTrabajo", tDescripcion);
+    
     formData.append("registro", registro);
     formData.append("fotosTrabajo", fFotosTrabajo.files[0]);
     formData.append("selfie", fSelfie.files[0]);
