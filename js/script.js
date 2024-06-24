@@ -144,8 +144,7 @@ function validarCampos(event) {
     formData.append("idPais", tPais);
     formData.append("ListSubcategorias", arrayChecks);
     formData.append("DescripcionTrabajo", tDescripcion);
-    
-    formData.append("registro", registro);
+
     formData.append("fotosTrabajo", fFotosTrabajo.files[0]);
     formData.append("selfie", fSelfie.files[0]);
     formData.append("idOficial", fIdOficial.files[0]);
