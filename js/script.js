@@ -142,7 +142,7 @@ function validarCampos(event) {
     formData.append("Colonia", tColonia);
     formData.append("CodigoPostal", tCodigoPostal);
     formData.append("idPais", tPais);
-    formData.append("ListSubcategorias", arrayChecks);
+    formData.append("ListSubcategorias", JSON.stringify(arrayChecks));
     formData.append("DescripcionTrabajo", tDescripcion);
 
     formData.append("fotosTrabajo", fFotosTrabajo.files[0]);
