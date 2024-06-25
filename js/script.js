@@ -220,10 +220,7 @@ async function postRegistro(pRegistro) {
     const response = await fetch("https://micasaapptestapi.azurewebsites.net/api/registro", {
         method: "POST",
         //body: JSON.stringify(pRegistro),
-        body: pRegistro,
-        headers: {
-            "Content-type": "multipart/form-data; charset=UTF-8"
-        }
+        body: pRegistro
     })
     .then((response) => response.json())
     .then((json) => {
