@@ -222,7 +222,7 @@ async function postRegistro(pRegistro) {
         //body: JSON.stringify(pRegistro),
         body: pRegistro,
         headers: {
-            "Content-type": "text/plain; charset=UTF-8"
+            "Content-type": "multipart/form-data; charset=UTF-8"
         }
     })
     .then((response) => response.json())
