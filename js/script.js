@@ -230,6 +230,10 @@ async function postRegistro(pRegistro) {
     .then((response) => response.json())
     .then((json) => {
         console.log(json);
+        if (json.status !== 200) {
+            console.log(json);
+            throw new Error(`There was an error with status code ${res.status}`)
+        }
         const popup = document.getElementById("popup-aviso-registro");
         popup.classList.add("popup-success");
         const header = document.getElementById("popup-header");
