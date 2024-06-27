@@ -216,7 +216,6 @@ p.fileName {
 .popup-content-header {
     padding: 30px 20px 10px 20px;
     font-size: 36px;
-    color: #26992b;
     font-weight: 500;
 }
 .popup-content-body {
@@ -246,6 +245,18 @@ p.fileName {
 }
 .button-success {
     background-color: #4CAF50;
+}
+.popup-error {
+    background-color: rgb(252, 227, 227);
+}
+.button-error {
+    background-color: #d81616;
+}
+.popup-content-header-success {
+    color: #26992b;
+}
+.popup-content-header-error {
+    color: #992626;
 }
 .loader {
     width: 64px;

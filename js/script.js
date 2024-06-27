@@ -231,6 +231,27 @@ async function postRegistro(pRegistro) {
     .then((json) => {
         console.log(json);
         const popup = document.getElementById("popup-aviso-registro");
+        popup.classList.add("popup-success");
+        const header = document.getElementById("popup-header");
+        header.classList.add("popup-content-header-success");
+        header.textContent = "Éxito!";
+        const btnAceptar = document.getElementById("btn-popup-aceptar");
+        btnAceptar.classList.add("button-success");
+        const body = document.getElementById("popup-body");
+        body.textContent = "Te has registrado con éxito a MiCasaApp";
+        removeLoader();
+        popup.classList.toggle("hidden");
+    })
+    .catch((error) => {
+        const popup = document.getElementById("popup-aviso-registro");
+        popup.classList.add("popup-error");
+        const header = document.getElementById("popup-header");
+        header.classList.add("popup-content-header-error");
+        header.textContent = "Error";
+        const btnAceptar = document.getElementById("btn-popup-aceptar");
+        btnAceptar.classList.add("button-error");
+        const body = document.getElementById("popup-body");
+        body.textContent = error;
         removeLoader();
         popup.classList.toggle("hidden");
     });
@@ -375,6 +396,18 @@ document.getElementById('comprobanteDomicilio').onchange = function () {
 const btnAceptar = document.getElementById("btn-popup-aceptar");
 btnAceptar.addEventListener('click', function () {
     const popup = document.getElementById("popup-aviso-registro");
+    popup.classList.remove("popup-success");
+    popup.classList.remove("popup-error");
+    const header = document.getElementById("popup-header");
+    header.classList.remove("popup-content-header-success");
+    header.classList.remove("popup-content-header-error");
+    header.textContent = "";
+    const btnAceptar = document.getElementById("btn-popup-aceptar");
+    btnAceptar.classList.remove("button-success");
+    btnAceptar.classList.remove("button-error");
+    const body = document.getElementById("popup-header");
+    body.textContent = "";
+    removeLoader();
     popup.classList.toggle("hidden");
     removeOverlay();
 });
