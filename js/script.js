@@ -144,11 +144,13 @@ function validarCampos(event) {
     formData.append("idPais", tPais);
     //formData.append("ListSubcategorias", JSON.stringify(arrayChecks));
     arrayChecks.forEach(subcategoria => {
-        formData.append("ListSubcategorias", subcategoria)
+        formData.append("ListSubcategorias", subcategoria);
     });
     formData.append("DescripcionTrabajo", tDescripcion);
 
-    formData.append("fotosTrabajo", fFotosTrabajo.files[0]);
+    for(let i = 0; i < fFotosTrabajo.length; i++) {
+        formData.append("fotosTrabajo", fFotosTrabajo.files[i]);
+    }
     formData.append("selfie", fSelfie.files[0]);
     formData.append("idOficial", fIdOficial.files[0]);
     formData.append("comprobanteDomicilio", fComprobanteDomicilio.files[0]);
