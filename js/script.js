@@ -232,7 +232,7 @@ async function postRegistro(pRegistro) {
         console.log(json);
         if (json.status !== 200) {
             console.log(json);
-            throw new Error(`There was an error with status code ${res.status}`)
+            throw new Error(json.Descripcion);
         }
         const popup = document.getElementById("popup-aviso-registro");
         popup.classList.add("popup-success");
