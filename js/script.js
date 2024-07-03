@@ -385,7 +385,7 @@ Element.prototype.toggle = function(sibling) {
 }
 
 document.getElementById('fotos').onchange = function () {
-    document.getElementById('p-fotos').innerHTML = document.getElementById('fotos').files[0].name;
+    document.getElementById('p-fotos').innerHTML = document.getElementById('fotos').files.length + " archivo(s) seleccionados.";
 }
 document.getElementById('selfie').onchange = function () {
     document.getElementById('p-selfie').innerHTML = document.getElementById('selfie').files[0].name;
