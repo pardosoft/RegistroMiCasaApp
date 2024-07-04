@@ -147,8 +147,10 @@ function validarCampos(event) {
         formData.append("ListSubcategorias", subcategoria);
     });
     formData.append("DescripcionTrabajo", tDescripcion);
-
+console.log(fFotosTrabajo);
+console.log(fFotosTrabajo.length);
     for(let i = 0; i < fFotosTrabajo.length; i++) {
+        fFotosTrabajo.files[i];
         formData.append("fotosTrabajo", fFotosTrabajo.files[i]);
     }
     formData.append("selfie", fSelfie.files[0]);
