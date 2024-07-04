@@ -8,6 +8,23 @@ const formRegistro = document.getElementById("form-registro");
 function validarCampos(event) {
 
     event.preventDefault();
+
+    let checkboxTerminos = document.getElementById("aceptar");
+
+    if(checkboxTerminos.checked == false) {
+        const popup = document.getElementById("popup-aviso-registro");
+        popup.classList.add("popup-error");
+        const header = document.getElementById("popup-header");
+        header.classList.add("popup-content-header-error");
+        header.textContent = "Error";
+        const btnAceptar = document.getElementById("btn-popup-aceptar");
+        btnAceptar.classList.add("button-error");
+        const body = document.getElementById("popup-body");
+        body.textContent = "Debe aceptar los términos y condiciones.";
+        removeLoader();
+        popup.classList.toggle("hidden");
+         return;
+    }
     
     /* Validar todos los campos */
     let tEmail = document.getElementById("email").value;
@@ -147,10 +164,8 @@ function validarCampos(event) {
         formData.append("ListSubcategorias", subcategoria);
     });
     formData.append("DescripcionTrabajo", tDescripcion);
-console.log(fFotosTrabajo);
-console.log(fFotosTrabajo.length);
-    for(let i = 0; i < fFotosTrabajo.length; i++) {
-        fFotosTrabajo.files[i];
+
+    for(let i = 0; i < fFotosTrabajo.files.length; i++) {
         formData.append("fotosTrabajo", fFotosTrabajo.files[i]);
     }
     formData.append("selfie", fSelfie.files[0]);
