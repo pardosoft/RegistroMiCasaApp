@@ -12,6 +12,7 @@ function validarCampos(event) {
     let checkboxTerminos = document.getElementById("aceptar");
 
     if(checkboxTerminos.checked == false) {
+        addOverlay();
         const popup = document.getElementById("popup-aviso-registro");
         popup.classList.add("popup-error");
         const header = document.getElementById("popup-header");
